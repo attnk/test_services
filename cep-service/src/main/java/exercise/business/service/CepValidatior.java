@@ -1,8 +1,26 @@
 package exercise.business.service;
 
-import org.springframework.stereotype.Service;
+import java.util.Objects;
 
-@Service
-public class CepValidationService {
+import org.springframework.stereotype.Component;
+
+@Component
+public class CepValidatior {
+
+	private static final String CEP_PATTERN = "\\d{8}"; // "\\d{5}-\\d{3}"
+	
+	/**
+	 * 
+	 * @param cep
+	 * @throws IllegalArgumentException
+	 * @return 
+	 */
+	public boolean isValid(String cep) {
+		if(Objects.isNull(cep)) {
+			throw new IllegalArgumentException("CEP não pode ser Nulo!!!");
+		}
+		
+		return cep.matches(CEP_PATTERN);
+	}
 
 }
