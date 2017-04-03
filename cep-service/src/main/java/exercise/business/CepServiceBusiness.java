@@ -3,8 +3,9 @@ package exercise.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import exercise.business.service.CepValidatior;
 import exercise.model.Address;
+import exercise.repository.CepServiceRepository;
+import exercise.service.CepValidatior;
 
 @Service
 public class CepServiceBusiness {
@@ -12,7 +13,10 @@ public class CepServiceBusiness {
 	@Autowired
 	private CepValidatior validator; 
 	
-	public Address searchAddress(String cep) {
+	@Autowired
+	private CepServiceRepository repository;
+	
+	public Address searchCepDetails(String cep) {
 		// validar se o cep esta certo
 		
 		// caso não seja valido retornar erro - CEP inválido

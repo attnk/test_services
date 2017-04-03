@@ -1,4 +1,4 @@
-package exercise.business.service;
+package exercise.service;
 
 import java.util.Objects;
 

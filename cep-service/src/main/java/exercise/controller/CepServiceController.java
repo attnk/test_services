@@ -20,7 +20,7 @@ public class CepServiceController {
 	
 	@RequestMapping(value = "/search/{CEP}", method = GET)
 	public Address search(@PathVariable String cep) {
-		Address address = business.searchAddress(cep);
+		Address address = business.searchCepDetails(cep);
 		return address;
 	}
 

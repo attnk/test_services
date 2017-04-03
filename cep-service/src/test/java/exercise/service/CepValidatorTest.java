@@ -1,4 +1,4 @@
-package exercise.business.service;
+package exercise.service;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
