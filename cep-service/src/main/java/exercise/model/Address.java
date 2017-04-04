@@ -10,7 +10,6 @@ public class Address implements Serializable{
 	private String district;
 	private String city;
 	private String state;
-	private String error;
 	
 	public String getStreet() {
 		return street;
@@ -42,14 +41,6 @@ public class Address implements Serializable{
 	
 	public void setState(String state) {
 		this.state = state;
-	}
-
-	public String getError() {
-		return error;
-	}
-
-	public void setError(String error) {
-		this.error = error;
 	}
 
 }

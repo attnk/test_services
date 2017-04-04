@@ -11,7 +11,7 @@ import exercise.entity.CepDetails;
 
 /**
  * Repository "mocakdo"
- * @author adri_tanaka
+ * @author Adriano Tanaka
  *
  */
 @Repository

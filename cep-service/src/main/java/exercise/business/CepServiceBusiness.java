@@ -49,7 +49,7 @@ public class CepServiceBusiness {
 	private Address getValidAddress(String cep, List<CepDetails> cepList) throws NotFoundCepException {
 		Address address = findAddresss(cep, cepList);
 		
-		if(Objects.isNull(address)) {
+		if(isNull(address)) {
 			throw new NotFoundCepException("CEP inválido");
 		}
 		

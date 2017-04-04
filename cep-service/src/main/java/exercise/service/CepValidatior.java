@@ -1,6 +1,6 @@
 package exercise.service;
 
-import java.util.Objects;
+import static java.util.Objects.isNull;
 
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,7 @@ public class CepValidatior {
 	 * @return 
 	 */
 	public boolean isValid(String cep) {
-		if(Objects.isNull(cep)) {
+		if(isNull(cep)) {
 			throw new IllegalArgumentException("CEP não pode ser Nulo!!!");
 		}
 		

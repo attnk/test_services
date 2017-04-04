@@ -21,7 +21,7 @@ public class CepServiceController {
 	private CepServiceBusiness business;
 	
 	@RequestMapping(value = "/search/{CEP}", method = GET)
-	public Address search(@PathVariable String cep) throws InvalidCepException, NotFoundCepException {
+	public Address search(@PathVariable(name="CEP") String cep) throws InvalidCepException, NotFoundCepException {
 		Address address = business.searchCepDetails(cep);
 		return address;
 	}
