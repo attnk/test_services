@@ -10,7 +10,7 @@ public class CepDetauilsMockFactory implements TemplateLoader{
 	@Override
 	public void load() {
 		Fixture.of(CepDetails.class).addTemplate("default", new Rule(){{
-			add("id", 0);
+			add("id", 0L);
 			add("street", "");
 			add("district", "");
 			add("city", "");
@@ -19,7 +19,7 @@ public class CepDetauilsMockFactory implements TemplateLoader{
 		}});
 		
 		Fixture.of(CepDetails.class).addTemplate("paulista", new Rule(){{
-			add("id", 1);
+			add("id", 1L);
 			add("street", "Av. Paulista");
 			add("district", "Paraíso");
 			add("city", "São Paulo");
@@ -28,7 +28,7 @@ public class CepDetauilsMockFactory implements TemplateLoader{
 		}});
 		
 		Fixture.of(CepDetails.class).addTemplate("candido-de-abreu", new Rule(){{
-			add("id", 2);
+			add("id", 2L);
 			add("street", "Av. Cândido de Abreu");
 			add("district", "Centro Cívico");
 			add("city", "Curitiba");
@@ -37,7 +37,7 @@ public class CepDetauilsMockFactory implements TemplateLoader{
 		}});
 		
 		Fixture.of(CepDetails.class).addTemplate("estadio-maracana", new Rule(){{
-			add("id", 3);
+			add("id", 3L);
 			add("street", "Av. Pres. Castelo Branco");
 			add("district", "Maracanã");
 			add("city", "Rio de Janeiro");

@@ -14,7 +14,7 @@ import exercise.entity.CepDetails;
 public class CepServiceRepository {
 
 	public CepServiceRepository() {
-		FixtureFactoryLoader.loadTemplates("exercise.factory.template");
+		FixtureFactoryLoader.loadTemplates("exercise.repository.factory.template");
 	}
 	
 	public CepDetails getDetails(String cep) {
