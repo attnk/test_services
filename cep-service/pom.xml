@@ -69,11 +69,21 @@
 <!-- 			<artifactId>mysql-connector-java</artifactId> -->
 <!-- 			<scope>runtime</scope> -->
 <!-- 		</dependency> -->
+		
+		<!-- TESTES -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- FIXTURE FACTORY -->
+		<dependency>
+			<groupId>br.com.six2six</groupId>
+			<artifactId>fixture-factory</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
