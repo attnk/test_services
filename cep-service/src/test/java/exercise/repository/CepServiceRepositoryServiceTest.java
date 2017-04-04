@@ -1,10 +1,10 @@
 package exercise.repository;
 
 import static java.util.Objects.nonNull;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Objects;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,27 +24,16 @@ public class CepServiceRepositoryServiceTest {
 	}
 	
 	@Test
-	public void deveRetornarUmCepDetailsQuandoReceberUmCepExistente() {
+	public void deveRetornarUmaListaDeCep() {
 		// GIVEN
-		String cep = "01311000";
+		List<CepDetails> result;
 		
 		// WHEN
-		CepDetails result = repository.getDetails(cep);
+		result = repository.getAll();
 		
 		// THEN
 		assertTrue(nonNull(result));
-		assertEquals(cep, result.getCep());
+		assertFalse(result.isEmpty());
 	}
-	
-	@Test
-	public void deveRetornarNullQuandoReceberUmCepInexistente() {
-		// GIVEN
-		String cep = "05001200";
-		
-		// WHEN
-		CepDetails result = repository.getDetails(cep);
-		
-		// THEN
-		assertTrue(Objects.isNull(result));
-	}
+
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import exercise.business.CepServiceBusiness;
+import exercise.exception.InvalidCepException;
+import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
 
 @RestController
@@ -19,7 +21,7 @@ public class CepServiceController {
 	private CepServiceBusiness business;
 	
 	@RequestMapping(value = "/search/{CEP}", method = GET)
-	public Address search(@PathVariable String cep) {
+	public Address search(@PathVariable String cep) throws InvalidCepException, NotFoundCepException {
 		Address address = business.searchCepDetails(cep);
 		return address;
 	}
