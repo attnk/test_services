@@ -1,6 +1,6 @@
 package exercise.builder;
 
-import java.util.Objects;
+import static java.util.Objects.isNull;
 
 import org.springframework.stereotype.Component;
 
@@ -20,8 +20,9 @@ public class AddressModelBuilder {
 	 * @throws BuilderExcepiotn 
 	 */
 	public Address buildModel(AddressEntity entity) throws BuilderExcepiotn {
-		if(Objects.isNull(entity)) {
-			throw new BuilderExcepiotn(new IllegalArgumentException("Parâmetro AddressEntity não deve ser nulo!"));
+		if(isNull(entity)) {
+			throw new BuilderExcepiotn(
+					new IllegalArgumentException("Parâmetro AddressEntity não pode ser nulo!"));
 		}
 		
 		CepDetails cepEntity = entity.getCep();
@@ -36,6 +37,28 @@ public class AddressModelBuilder {
 		address.setComplement(entity.getComplement());
 		
 		return address;
+	}
+
+	/**
+	 * Converte um modelo {@link Address} e um {@link CepDetails} 
+	 * Sem uma entidade {@link AddressEntity}
+	 * @param address
+	 * @param cepDetails
+	 * @return
+	 * @throws BuilderExcepiotn
+	 */
+	public AddressEntity buildEntity(Address address, CepDetails cepDetails) throws BuilderExcepiotn {
+		if(isNull(address) || isNull(cepDetails)) {
+			throw new BuilderExcepiotn(
+					new IllegalArgumentException("Parâmetro Address ou CepDetails não pode ser nulo!"));
+		}
+		
+		AddressEntity entity = new AddressEntity();
+		entity.setComplement(address.getComplement());
+		entity.setCep(cepDetails);
+		entity.setNumber(address.getNumber());
+		
+		return entity;
 	}
 	
 }

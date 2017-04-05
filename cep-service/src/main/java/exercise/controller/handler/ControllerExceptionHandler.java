@@ -12,7 +12,7 @@ import exercise.exception.CouldNotProcessException;
 import exercise.exception.CouldNotProcessInvalidArgumentException;
 import exercise.exception.InvalidCepException;
 import exercise.exception.NotFoundCepException;
-import exercise.model.SearchError;
+import exercise.model.ProcessMessage;
 
 @ControllerAdvice
 @RestController
@@ -23,8 +23,8 @@ public class ControllerExceptionHandler {
     	InvalidCepException.class, 
     	CouldNotProcessInvalidArgumentException.class
     })
-	public SearchError handleInvalidCep(Exception e) {
-		SearchError response = new SearchError();
+	public ProcessMessage handleInvalidCep(Exception e) {
+		ProcessMessage response = new ProcessMessage();
 		response.setMessage(e.getMessage());
 		
 		return response;
@@ -35,8 +35,8 @@ public class ControllerExceptionHandler {
     	NotFoundCepException.class,
     	CouldNotFoundAdressException.class
     })
-	public SearchError handleNotFoundCep(Exception e) {
-		SearchError response = new SearchError();
+	public ProcessMessage handleNotFoundCep(Exception e) {
+		ProcessMessage response = new ProcessMessage();
 		response.setMessage(e.getMessage());
 		
 		return response;
@@ -47,8 +47,8 @@ public class ControllerExceptionHandler {
     	CouldNotProcessException.class,
     	CouldNotConvertException.class
     })
-	public SearchError handleInternalError() {
-		SearchError response = new SearchError();
+	public ProcessMessage handleInternalError() {
+		ProcessMessage response = new ProcessMessage();
 		response.setMessage(String.format("Erro ao realizar o processamento!"));
 		
 		return response;

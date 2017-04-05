@@ -1,5 +1,7 @@
 package exercise.business;
 
+import static java.util.Objects.isNull;
+
 import java.util.Objects;
 
 import javax.persistence.NoResultException;
@@ -11,13 +13,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import exercise.builder.AddressModelBuilder;
+import exercise.entity.AddressEntity;
+import exercise.entity.CepDetails;
 import exercise.exception.BuilderExcepiotn;
 import exercise.exception.CouldNotConvertException;
 import exercise.exception.CouldNotFoundAdressException;
 import exercise.exception.CouldNotProcessException;
 import exercise.exception.CouldNotProcessInvalidArgumentException;
+import exercise.exception.InvalidCepException;
+import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
 import exercise.repository.AddressRepository;
+import exercise.repository.CepServiceRepository;
 
 @Service
 public class AddressBusiness {
@@ -26,6 +33,9 @@ public class AddressBusiness {
 	
 	@Autowired
 	private AddressRepository repository;
+	
+	@Autowired
+	private CepServiceRepository cepRepository;
 	
 	@Autowired
 	private AddressModelBuilder builder;
@@ -48,7 +58,7 @@ public class AddressBusiness {
 			CouldNotFoundAdressException, 
 			CouldNotProcessException {
 
-		if(Objects.isNull(id)) {
+		if(isNull(id)) {
 			throw new CouldNotProcessInvalidArgumentException("Address ID não pode ser nulo!");
 		}
 		
@@ -65,11 +75,52 @@ public class AddressBusiness {
 		}
 	}
 	
-	// POST - validar o CEP usando o business do serviço de Busca CEP
+	/**
+	 * 
+	 * @param address
+	 * @return
+	 * @throws InvalidCepException
+	 * @throws NotFoundCepException
+	 * @throws CouldNotProcessInvalidArgumentException
+	 * @throws CouldNotConvertException
+	 * @throws CouldNotProcessException
+	 */
+	public Address persist(Address address, boolean isUpdate) 
+			throws InvalidCepException, 
+			NotFoundCepException, 
+			CouldNotProcessInvalidArgumentException, 
+			CouldNotConvertException, 
+			CouldNotProcessException {
+		
+		validateParams(address);
+		
+		// valida o CEP
+		cepBusiness.searchCepDetails(address.getCep());
+		
+		try {
+			CepDetails cepDetails = cepRepository.findByCep(address.getCep());
+			AddressEntity entity = builder.buildEntity(address, cepDetails);
+			
+			if(isUpdate) {
+				entity.setId(repository.findByCepId(cepDetails));
+			}
+			
+			return builder.buildModel(repository.save(entity));
+		} catch (BuilderExcepiotn e) {
+			throw new CouldNotConvertException(e);
+		} catch (Exception e) {
+			LOG.error(e);
+			throw new CouldNotProcessException(e);
+		}
+	}
 	
-	
-	// UPDATE - validar o CEP usando o business do serviço de Busca CEP
-	
+	private void validateParams(Address address) throws CouldNotProcessInvalidArgumentException {
+		if(isNull(address)) {
+			throw new CouldNotProcessInvalidArgumentException("Address não pode ser nulo!");
+		} else if(address.isValidRequiredFields()) {
+			throw new CouldNotProcessInvalidArgumentException("RUA, NÚMERO, CEP, CIDADE, ou ESTADO não pode ser nulo!");
+		}
+	}
 	
 	/**
 	 * 

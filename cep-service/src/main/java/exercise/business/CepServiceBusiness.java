@@ -37,7 +37,7 @@ public class CepServiceBusiness {
 	public Address searchCepDetails(String cep) throws InvalidCepException, NotFoundCepException {
 
 		if(validator.isValid(cep)) {
-			List<CepDetails> cepList = repository.getAll();
+			List<CepDetails> cepList = repository.findAll();
 			
 			return getValidAddress(cep, cepList);
 		} else {
