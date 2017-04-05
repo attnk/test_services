@@ -4,17 +4,58 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(Include.NON_NULL)
 public class Address implements Serializable{
 	
 	private static final long serialVersionUID = 7076401315847366826L;
 	
+	@JsonProperty("RUA")
 	private String street;
-	private String district;
-	private String city;
-	private String state;
 	
+	@JsonProperty("BAIRRO")
+	private String district;
+	
+	@JsonProperty("CIDADE")
+	private String city;
+	
+	@JsonProperty("ESTADO")
+	private String state;
+
+	@JsonProperty("NÚMERO")
+	private Long number;
+	
+	@JsonProperty("COMPLEMENTO")
+	private String complement;
+	
+	@JsonProperty("CEP")
+	private String cep;
+	
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public Long getNumber() {
+		return number;
+	}
+
+	public void setNumber(Long number) {
+		this.number = number;
+	}
+
+	public String getComplement() {
+		return complement;
+	}
+
+	public void setComplement(String complement) {
+		this.complement = complement;
+	}
+
 	public String getStreet() {
 		return street;
 	}

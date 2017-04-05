@@ -15,7 +15,7 @@ public class CepDetauilsMockFactory implements TemplateLoader{
 			add("district", "");
 			add("city", "");
 			add("state", "");
-			add("cep", 12345678);
+			add("cep", "12345678");
 		}});
 		
 		Fixture.of(CepDetails.class).addTemplate("paulista", new Rule(){{

@@ -2,18 +2,21 @@ package exercise.model;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SearchError implements Serializable {
 
 	private static final long serialVersionUID = 6041067810602643807L;
 	
-	private String messega;
+	@JsonProperty("MENSAGEM")
+	private String message;
 
-	public String getMessega() {
-		return messega;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMessega(String messega) {
-		this.messega = messega;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 }

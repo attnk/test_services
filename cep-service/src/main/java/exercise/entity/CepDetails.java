@@ -1,17 +1,33 @@
 package exercise.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CEP")
 public class CepDetails {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "STREET")
 	private String street;
 	
+	@Column(name = "DISTRICT")
 	private String district;
 	
+	@Column(name = "CITY")
 	private String city;
 	
+	@Column(name = "STATE")
 	private String state;
 
+	@Column(name = "CEP")
 	private String cep;
 	
 	public Long getId() {
