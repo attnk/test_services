@@ -43,7 +43,7 @@ public class CepServiceBusinessTest {
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
-		FixtureFactoryLoader.loadTemplates("exercise.template");
+		FixtureFactoryLoader.loadTemplates("exercise.template.cep");
 	}
 	
 	@Test(expected = InvalidCepException.class)

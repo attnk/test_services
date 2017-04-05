@@ -1,4 +1,4 @@
-package exercise.template;
+package exercise.template.cep;
 
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
