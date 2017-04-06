@@ -59,7 +59,7 @@ public class CepServiceBusinessTest {
 		} catch (Exception e) {
 			// THEN - throw InvalidCepException
 			verify(validator, times(1)).isValid(cep);
-			verify(repository, never()).findAll();
+			verify(repository, never()).getAll();
 			verifyNoMoreInteractions(validator, repository);
 			
 			throw e;
@@ -72,7 +72,7 @@ public class CepServiceBusinessTest {
 		String cep = "04070000";
 		
 		when(validator.isValid(cep)).thenReturn(true);
-		when(repository.findAll()).thenReturn(getTemplates());
+		when(repository.getAll()).thenReturn(getTemplates());
 		
 		try {
 			// WHEN
@@ -80,7 +80,7 @@ public class CepServiceBusinessTest {
 		} catch (Exception e) {
 			// THEN - throw NotFoundCepException
 			verify(validator, times(1)).isValid(cep);
-			verify(repository, times(1)).findAll();
+			verify(repository, times(1)).getAll();
 			verifyNoMoreInteractions(validator, repository);
 			
 			throw e;
@@ -93,7 +93,7 @@ public class CepServiceBusinessTest {
 		String cep = "01311000";
 		
 		when(validator.isValid(cep)).thenReturn(true);
-		when(repository.findAll()).thenReturn(getTemplates());
+		when(repository.getAll()).thenReturn(getTemplates());
 		
 		// WHEN
 		Address result = business.searchCepDetails(cep);
@@ -102,7 +102,7 @@ public class CepServiceBusinessTest {
 		assertTrue(nonNull(result));
 		
 		verify(validator, times(1)).isValid(cep);
-		verify(repository, times(1)).findAll();
+		verify(repository, times(1)).getAll();
 		verifyNoMoreInteractions(validator, repository);
 	}
 	

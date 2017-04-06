@@ -1,12 +1,10 @@
 package exercise.model;
 
-import static java.util.Objects.isNull;
-
 import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
 public class Address implements Serializable{
@@ -25,7 +23,7 @@ public class Address implements Serializable{
 	@JsonProperty("ESTADO")
 	private String state;
 
-	@JsonProperty("NÚMERO")
+	@JsonProperty("NUMERO")
 	private Long number;
 	
 	@JsonProperty("COMPLEMENTO")
@@ -90,13 +88,4 @@ public class Address implements Serializable{
 		this.state = state;
 	}
 
-	public boolean isValidRequiredFields() {
-		boolean result = true;
-		
-		if (isNull(this.cep) || isNull(this.street) || isNull(this.number) || isNull(this.city) || isNull(this.state)) {
-			result = false;
-		}
-		return result;
-	}
-	
 }

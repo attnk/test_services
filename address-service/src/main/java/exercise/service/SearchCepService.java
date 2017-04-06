@@ -23,8 +23,7 @@ public class SearchCepService {
 	private static final String PORT = ":8080";
 	private static final String CONTEXT = "/CEP/search/";
 	
-	@Autowired
-	private RestTemplate rt;
+	private RestTemplate rt = new RestTemplate();
 	
 	/**
 	 * 
@@ -45,9 +44,9 @@ public class SearchCepService {
         	rt.exchange(uri, HttpMethod.GET, entity, Address.class);
 		} catch (HttpClientErrorException e) {
 			if(e.getRawStatusCode() == HttpStatus.BAD_REQUEST.value()) {
-				throw new InvalidCepException(e.getMessage());
+				throw new InvalidCepException(e.getResponseBodyAsString());
 			} else if(e.getRawStatusCode() == HttpStatus.NOT_FOUND.value()) {
-				throw new NotFoundCepException(e.getMessage());
+				throw new NotFoundCepException(e.getResponseBodyAsString());
 			} else {
 				throw new CouldNotSearchCepException(e);
 			}

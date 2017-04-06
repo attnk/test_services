@@ -25,7 +25,7 @@ public class Address implements Serializable{
 	@JsonProperty("ESTADO")
 	private String state;
 
-	@JsonProperty("NÚMERO")
+	@JsonProperty("NUMERO")
 	private Long number;
 	
 	@JsonProperty("COMPLEMENTO")

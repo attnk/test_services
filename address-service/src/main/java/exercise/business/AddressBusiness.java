@@ -118,7 +118,7 @@ public class AddressBusiness {
 	private void validateParams(Address address) throws CouldNotProcessInvalidArgumentException {
 		if(isNull(address)) {
 			throw new CouldNotProcessInvalidArgumentException("Address não pode ser nulo!");
-		} else if(address.isValidRequiredFields()) {
+		} else if(!address.isValidRequiredFields()) {
 			throw new CouldNotProcessInvalidArgumentException("RUA, NÚMERO, CEP, CIDADE, ou ESTADO não pode ser nulo!");
 		}
 	}
