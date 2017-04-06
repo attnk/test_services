@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>exercise</groupId>
-	<artifactId>cep-service</artifactId>
+	<artifactId>vowel-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>cep-service</name>
+	<name>vowel-service</name>
 	<description></description>
 
 	<parent>
@@ -35,37 +35,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jersey</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		    <exclusions>
-		        <exclusion>
-		            <groupId>org.springframework.boot</groupId>
-		            <artifactId>spring-boot-starter-logging</artifactId>
-		        </exclusion>
-		    </exclusions>
 		</dependency>
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>			
 
-		<!-- TESTES -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
-		<!-- FIXTURE FACTORY -->
-		<dependency>
-			<groupId>br.com.six2six</groupId>
-			<artifactId>fixture-factory</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		
 	</dependencies>
 
 	<build>

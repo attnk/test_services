@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import exercise.exception.InvalidCepException;
 import exercise.exception.NotFoundCepException;
-import exercise.model.SearchError;
+import exercise.model.ProcessMessage;
 
 @ControllerAdvice
 @RestController
-public class CepServiceExceptionHandler {
+public class ControllerExceptionHandler {
 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)  
     @ExceptionHandler({
     	InvalidCepException.class
     })
-	public SearchError handleInvalidCep(Exception e) {
-		SearchError response = new SearchError();
-		response.setMessega(e.getMessage());
+	public ProcessMessage handleInvalidCep(Exception e) {
+		ProcessMessage response = new ProcessMessage();
+		response.setMessage(e.getMessage());
 		
 		return response;
 	}
@@ -29,9 +29,9 @@ public class CepServiceExceptionHandler {
     @ExceptionHandler({
     	NotFoundCepException.class
     })
-	public SearchError handleNotFoundCep(Exception e) {
-		SearchError response = new SearchError();
-		response.setMessega(e.getMessage());
+	public ProcessMessage handleNotFoundCep(Exception e) {
+		ProcessMessage response = new ProcessMessage();
+		response.setMessage(e.getMessage());
 		
 		return response;
 	}

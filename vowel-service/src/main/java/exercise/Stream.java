@@ -1,4 +1,4 @@
-package com.buscape.demo.service;
+package exercise;
 
 public interface Stream {
 
