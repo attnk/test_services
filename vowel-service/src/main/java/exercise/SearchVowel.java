@@ -1,12 +1,10 @@
-package com.buscape.demo.service;
+package exercise;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class SearchVowel implements Stream {
 
@@ -46,17 +44,6 @@ public class SearchVowel implements Stream {
 	
 	
 	public static void main(String[] args) {
-		Map<Character, Integer> teste = new HashMap<>();
-		teste.put('a', 0);
-		teste.put('e', 1);
-		
-		Set<Character> set = teste.keySet();
-		Collection<Integer> lista = teste.values();
-		System.out.println(lista.toArray()[0]);
-		System.err.println(set.toArray()[0]);
-		
-		
-		
 		String testWord = "aaadeweVbneyUttOoni"; // deve retornar o U
 		
 		String aux = testWord.toLowerCase();
@@ -114,47 +101,6 @@ public class SearchVowel implements Stream {
 		// varrer no mapa e retornar o de menor valor
 		map.keySet();
 		map.values();
-		
-		
-		
-//		Character result = null;
-//		String aux = testWord.toLowerCase();
-//		
-//		int vowel = 0;
-//		int a = 0;
-//		int e = 0;
-//		int i = 0;
-//		int o = 0;
-//		int u =0;
-//		int consonant = 0;
-//		
-//		List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u');
-//		Character letra;
-////		List<Character> charList = new ArrayList<>();
-//		
-//		// loop varrendo em quanto houver next no AUX
-//		while(searchVowel.hasNext()) {
-//			letra = aux.charAt(0);
-//			
-//			if(vowels.contains(letra)) {
-//				vowel++;
-//				if(letra.equals('a')) a++;
-//				if(letra.equals('e')) e++;
-//				if(letra.equals('i')) i++;
-//				if(letra.equals('o')) o++;
-//				if(letra.equals('u')) u++;
-//			}
-//			
-//			
-//			
-//			// caso não econtrado, fazer substring retirando o primeiro caracter
-//			aux = aux.substring(1, aux.length());
-//			searchVowel = new SearchVowel(aux);
-//		}
-//		
-//		System.out.println("ENCONTRADO: " + searchVowel.serachFirstInCondition(testWord));
-//		System.out.println("ENCONTRADO: " + result);
-		
 	}
 	
 }
