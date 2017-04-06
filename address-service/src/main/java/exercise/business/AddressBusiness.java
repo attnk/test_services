@@ -25,6 +25,7 @@ import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
 import exercise.repository.AddressRepository;
 import exercise.repository.CepServiceRepository;
+import exercise.service.SearchCepService;
 
 @Service
 public class AddressBusiness {
@@ -41,7 +42,7 @@ public class AddressBusiness {
 	private AddressModelBuilder builder;
 	
 	@Autowired
-	private CepServiceBusiness cepBusiness;
+	private SearchCepService service;
 	
 	/**
 	 * 
@@ -94,10 +95,10 @@ public class AddressBusiness {
 		
 		validateParams(address);
 		
-		// valida o CEP
-		cepBusiness.searchCepDetails(address.getCep());
-		
 		try {
+			// valida o CEP
+			service.searchCepDetails(address.getCep());
+			
 			CepDetails cepDetails = cepRepository.findByCep(address.getCep());
 			AddressEntity entity = builder.buildEntity(address, cepDetails);
 			

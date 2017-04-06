@@ -5,11 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import exercise.entity.CepDetails;
 
-/**
- * Repository "mocakdo"
- * @author Adriano Tanaka
- *
- */
 @Repository
 public interface CepServiceRepository extends JpaRepository<CepDetails, Long> {
 
