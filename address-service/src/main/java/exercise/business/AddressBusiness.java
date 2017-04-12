@@ -53,11 +53,10 @@ public class AddressBusiness {
 	 * @throws CouldNotFoundAdressException 
 	 * @throws CouldNotProcessException 
 	 */
-	public Address getAddress(Long id) 
-			throws CouldNotProcessInvalidArgumentException, 
-			CouldNotConvertException, 
-			CouldNotFoundAdressException, 
-			CouldNotProcessException {
+	public Address getAddress(Long id) throws CouldNotProcessInvalidArgumentException, 
+												CouldNotConvertException, 
+												CouldNotFoundAdressException, 
+												CouldNotProcessException {
 
 		if(isNull(id)) {
 			throw new CouldNotProcessInvalidArgumentException("Address ID não pode ser nulo!");
@@ -86,12 +85,11 @@ public class AddressBusiness {
 	 * @throws CouldNotConvertException
 	 * @throws CouldNotProcessException
 	 */
-	public Address persist(Address address) 
-			throws InvalidCepException, 
-			NotFoundCepException, 
-			CouldNotProcessInvalidArgumentException, 
-			CouldNotConvertException, 
-			CouldNotProcessException {
+	public Address persist(Address address) throws InvalidCepException, 
+													NotFoundCepException, 
+													CouldNotProcessInvalidArgumentException, 
+													CouldNotConvertException, 
+													CouldNotProcessException {
 		
 		validateParams(address);
 		
@@ -125,8 +123,8 @@ public class AddressBusiness {
 	 * @throws CouldNotProcessInvalidArgumentException
 	 * @throws CouldNotProcessException 
 	 */
-	public void delete(Long id) 
-			throws CouldNotProcessInvalidArgumentException, CouldNotProcessException {
+	public void delete(Long id) throws CouldNotProcessInvalidArgumentException, 
+										CouldNotProcessException {
 		
 		if(Objects.isNull(id)) {
 			throw new CouldNotProcessInvalidArgumentException("Address ID não pode ser nulo!");

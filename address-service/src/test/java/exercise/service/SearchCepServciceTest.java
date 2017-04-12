@@ -43,7 +43,7 @@ public class SearchCepServciceTest {
 	
 	@Before
 	public void init() {
-		FixtureFactoryLoader.loadTemplates("exercise.template.address");
+		FixtureFactoryLoader.loadTemplates("exercise.template.model");
 		service = new SearchCepService();
 		MockitoAnnotations.initMocks(this);
 		ReflectionTestUtils.setField(service, "restTemplate", restTempalte);
@@ -61,7 +61,7 @@ public class SearchCepServciceTest {
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
         String uri = new String("http://" + HOST + PORT + CONTEXT + cep);
 		
-        Address address = from(Address.class).gimme("paulista");
+        Address address = from(Address.class).gimme("paulista-sem-id");
         
         ResponseEntity<Address> responseEntity = new ResponseEntity<Address>(address, HttpStatus.OK);
         
