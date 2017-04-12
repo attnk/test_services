@@ -4,8 +4,12 @@ import static java.util.Objects.nonNull;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import javax.persistence.NoResultException;
@@ -90,7 +94,7 @@ public class AddressBusinessTest {
 	}
 	
 	@Test(expected = CouldNotProcessInvalidArgumentException.class)
-	public void deveRetornarCouldNotProcessInvalidArgumentExceptionQuandoIdNulo() 
+	public void deveRetornarCouldNotProcessInvalidArgumentExceptionQuandoGetReceberIdNulo() 
 			throws BuilderExcepiotn, 
 					CouldNotProcessInvalidArgumentException, 
 					CouldNotConvertException, 
@@ -224,6 +228,67 @@ public class AddressBusinessTest {
 		}
 	}
 
-	// --  --
+	// -- PERSIST --
+	// 		-- INSERT --
+	
+	//		-- UPDATE --
+
+	
+	// -- DELETE --
+	@Test
+	public void deveDeletarRegistroComIdInformado() throws CouldNotProcessInvalidArgumentException, 
+															CouldNotProcessException {
+		// GIVEN
+		Long addressId = 1L;
+		
+		doNothing().when(addressRepository).delete(addressId);
+		
+		/// WHEN
+		business.delete(addressId);
+		
+		// THEN
+		verify(addressRepository, times(1)).delete(addressId);
+		verifyNoMoreInteractions(addressRepository);
+	}
+	
+	@Test(expected = CouldNotProcessException.class)
+	public void deveRetornarCouldNotProcessExceptionQuandoRepositoryDeleteJogarQualquerException() 
+			throws CouldNotProcessInvalidArgumentException, 
+					CouldNotProcessException {
+		// GIVEN
+		Long addressId = 1L;
+		
+		doThrow(new IllegalArgumentException()).when(addressRepository).delete(addressId);
+		
+		try {
+			/// WHEN
+			business.delete(addressId);
+		} catch (Exception e) {
+			// THEN
+			verify(addressRepository, times(1)).delete(addressId);
+			verifyNoMoreInteractions(addressRepository);
+			
+			throw e;
+		}
+	}
+	
+	@Test(expected = CouldNotProcessInvalidArgumentException.class)
+	public void deveRetornarCouldNotProcessInvalidArgumentExceptionQuandoDeleteReceberIdNulo() 
+			throws CouldNotProcessInvalidArgumentException, 
+					CouldNotProcessException {
+		// GIVEN
+		Long addressId = null;
+		
+		try {
+			/// WHEN
+			business.delete(addressId);
+		} catch (Exception e) {
+			// THEN
+			verify(addressRepository, never()).delete(anyLong());
+			verifyNoMoreInteractions(addressRepository);
+			
+			throw e;
+		}
+	}
 
 }
