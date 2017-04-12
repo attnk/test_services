@@ -17,6 +17,7 @@ import exercise.exception.CouldNotConvertException;
 import exercise.exception.CouldNotFoundAdressException;
 import exercise.exception.CouldNotProcessException;
 import exercise.exception.CouldNotProcessInvalidArgumentException;
+import exercise.exception.CouldNotSearchCepException;
 import exercise.exception.InvalidCepException;
 import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
@@ -46,9 +47,10 @@ public class AddressController {
 			CouldNotFoundAdressException, 
 			CouldNotProcessException, 
 			InvalidCepException, 
-			NotFoundCepException {
+			NotFoundCepException, 
+			CouldNotSearchCepException {
 		
-		return buisiness.persist(address, false);
+		return buisiness.persist(address);
 	}
 	
 	@RequestMapping(value = "/update", method = PUT)
@@ -58,9 +60,10 @@ public class AddressController {
 			CouldNotFoundAdressException, 
 			CouldNotProcessException, 
 			InvalidCepException, 
-			NotFoundCepException {
+			NotFoundCepException, 
+			CouldNotSearchCepException {
 		
-		return buisiness.persist(address, true);
+		return buisiness.persist(address);
 	}
 	
 	@RequestMapping(value = "/remove/{ID}", method = DELETE)

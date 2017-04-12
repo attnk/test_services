@@ -20,6 +20,7 @@ import exercise.exception.CouldNotConvertException;
 import exercise.exception.CouldNotFoundAdressException;
 import exercise.exception.CouldNotProcessException;
 import exercise.exception.CouldNotProcessInvalidArgumentException;
+import exercise.exception.CouldNotSearchCepException;
 import exercise.exception.InvalidCepException;
 import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
@@ -33,7 +34,7 @@ public class AddressBusiness {
 	private static final Logger LOG = LogManager.getLogger(AddressBusiness.class);
 	
 	@Autowired
-	private AddressRepository repository;
+	private AddressRepository addressRepository;
 	
 	@Autowired
 	private CepServiceRepository cepRepository;
@@ -53,18 +54,17 @@ public class AddressBusiness {
 	 * @throws CouldNotFoundAdressException 
 	 * @throws CouldNotProcessException 
 	 */
-	public Address getAddress(Long id) 
-			throws CouldNotProcessInvalidArgumentException, 
-			CouldNotConvertException, 
-			CouldNotFoundAdressException, 
-			CouldNotProcessException {
+	public Address getAddress(Long id) throws CouldNotProcessInvalidArgumentException, 
+												CouldNotConvertException, 
+												CouldNotFoundAdressException, 
+												CouldNotProcessException {
 
 		if(isNull(id)) {
 			throw new CouldNotProcessInvalidArgumentException("Address ID não pode ser nulo!");
 		}
 		
 		try {
-			return builder.buildModel(repository.findOne(id));
+			return builder.buildModel(addressRepository.findOne(id));
 		} catch (BuilderExcepiotn e) {
 			throw new CouldNotConvertException(e);
 		} catch (NonUniqueResultException | NoResultException e) {
@@ -85,28 +85,25 @@ public class AddressBusiness {
 	 * @throws CouldNotProcessInvalidArgumentException
 	 * @throws CouldNotConvertException
 	 * @throws CouldNotProcessException
+	 * @throws CouldNotSearchCepException 
 	 */
-	public Address persist(Address address, boolean isUpdate) 
-			throws InvalidCepException, 
-			NotFoundCepException, 
-			CouldNotProcessInvalidArgumentException, 
-			CouldNotConvertException, 
-			CouldNotProcessException {
+	public Address persist(Address address) throws InvalidCepException, 
+													NotFoundCepException, 
+													CouldNotProcessInvalidArgumentException, 
+													CouldNotConvertException, 
+													CouldNotProcessException, 
+													CouldNotSearchCepException {
 		
 		validateParams(address);
+
+		// valida o CEP
+		service.searchCepDetails(address.getCep());
 		
 		try {
-			// valida o CEP
-			service.searchCepDetails(address.getCep());
-			
 			CepDetails cepDetails = cepRepository.findByCep(address.getCep());
 			AddressEntity entity = builder.buildEntity(address, cepDetails);
 			
-			if(isUpdate) {
-				entity.setId(repository.findByCepId(cepDetails));
-			}
-			
-			return builder.buildModel(repository.save(entity));
+			return builder.buildModel(addressRepository.save(entity));
 		} catch (BuilderExcepiotn e) {
 			throw new CouldNotConvertException(e);
 		} catch (Exception e) {
@@ -129,15 +126,15 @@ public class AddressBusiness {
 	 * @throws CouldNotProcessInvalidArgumentException
 	 * @throws CouldNotProcessException 
 	 */
-	public void delete(Long id) 
-			throws CouldNotProcessInvalidArgumentException, CouldNotProcessException {
+	public void delete(Long id) throws CouldNotProcessInvalidArgumentException, 
+										CouldNotProcessException {
 		
 		if(Objects.isNull(id)) {
 			throw new CouldNotProcessInvalidArgumentException("Address ID não pode ser nulo!");
 		}
 		
 		try {
-			repository.delete(id);
+			addressRepository.delete(id);
 		} catch (Exception e) {
 			LOG.error(e);
 			throw new CouldNotProcessException(e);

@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Address implements Serializable{
 	
 	private static final long serialVersionUID = 7076401315847366826L;
+
+	private Long id;
 	
 	@JsonProperty("RUA")
 	private String street;
@@ -97,6 +99,14 @@ public class Address implements Serializable{
 			result = false;
 		}
 		return result;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }
