@@ -41,6 +41,61 @@ public class AddressTemplate implements TemplateLoader {
 			add("complement", "cj 16");
 			add("cep", "01311000");
 		}});
+		
+		Fixture.of(Address.class).addTemplate("paulista-sem-cep", new Rule(){{
+			add("id", 1L);
+			add("street", "Av. Paulista");
+			add("district", "Paraíso");
+			add("city", "São Paulo");
+			add("state", "SP");
+			add("number", 287L);
+			add("complement", "cj 16");
+			add("cep", null);
+		}});
+		
+		Fixture.of(Address.class).addTemplate("paulista-sem-rua", new Rule(){{
+			add("id", 1L);
+			add("street", null);
+			add("district", "Paraíso");
+			add("city", "São Paulo");
+			add("state", "SP");
+			add("number", 287L);
+			add("complement", "cj 16");
+			add("cep", "01311000");
+		}});
+		
+		Fixture.of(Address.class).addTemplate("paulista-sem-numero", new Rule(){{
+			add("id", 1L);
+			add("street", "Av. Paulista");
+			add("district", "Paraíso");
+			add("city", "São Paulo");
+			add("state", "SP");
+			add("number", null);
+			add("complement", "cj 16");
+			add("cep", "01311000");
+		}});
+		
+		Fixture.of(Address.class).addTemplate("paulista-sem-cidade", new Rule(){{
+			add("id", 1L);
+			add("street", "Av. Paulista");
+			add("district", "Paraíso");
+			add("city", null);
+			add("state", "SP");
+			add("number", 287L);
+			add("complement", "cj 16");
+			add("cep", "01311000");
+		}});
+		
+		Fixture.of(Address.class).addTemplate("paulista-sem-estado", new Rule(){{
+			add("id", 1L);
+			add("street", "Av. Paulista");
+			add("district", "Paraíso");
+			add("city", "São Paulo");
+			add("state", null);
+			add("number", 287L);
+			add("complement", "cj 16");
+			add("cep", "01311000");
+		}});
 	}
 
 }

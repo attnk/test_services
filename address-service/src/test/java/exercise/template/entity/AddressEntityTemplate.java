@@ -24,6 +24,13 @@ public class AddressEntityTemplate implements TemplateLoader {
 			add("complement", "cj. 16");
 		}});
 		
+		Fixture.of(AddressEntity.class).addTemplate("address-paulista-sem-id", new Rule(){{
+			add("id", null);
+			add("cep", one(CepDetails.class, "paulista"));
+			add("number", 287L);
+			add("complement", "cj. 16");
+		}});
+		
 		Fixture.of(AddressEntity.class).addTemplate("address-candido-de-abreu", new Rule(){{
 			add("id", 2L);
 			add("cep", one(CepDetails.class, "candido-de-abreu"));

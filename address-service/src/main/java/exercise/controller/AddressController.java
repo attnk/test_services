@@ -17,6 +17,7 @@ import exercise.exception.CouldNotConvertException;
 import exercise.exception.CouldNotFoundAdressException;
 import exercise.exception.CouldNotProcessException;
 import exercise.exception.CouldNotProcessInvalidArgumentException;
+import exercise.exception.CouldNotSearchCepException;
 import exercise.exception.InvalidCepException;
 import exercise.exception.NotFoundCepException;
 import exercise.model.Address;
@@ -46,7 +47,8 @@ public class AddressController {
 			CouldNotFoundAdressException, 
 			CouldNotProcessException, 
 			InvalidCepException, 
-			NotFoundCepException {
+			NotFoundCepException, 
+			CouldNotSearchCepException {
 		
 		return buisiness.persist(address);
 	}
@@ -58,7 +60,8 @@ public class AddressController {
 			CouldNotFoundAdressException, 
 			CouldNotProcessException, 
 			InvalidCepException, 
-			NotFoundCepException {
+			NotFoundCepException, 
+			CouldNotSearchCepException {
 		
 		return buisiness.persist(address);
 	}
