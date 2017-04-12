@@ -48,7 +48,7 @@ public class AddressController {
 			InvalidCepException, 
 			NotFoundCepException {
 		
-		return buisiness.persist(address, false);
+		return buisiness.persist(address);
 	}
 	
 	@RequestMapping(value = "/update", method = PUT)
@@ -60,7 +60,7 @@ public class AddressController {
 			InvalidCepException, 
 			NotFoundCepException {
 		
-		return buisiness.persist(address, true);
+		return buisiness.persist(address);
 	}
 	
 	@RequestMapping(value = "/remove/{ID}", method = DELETE)

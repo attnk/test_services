@@ -86,7 +86,7 @@ public class AddressBusiness {
 	 * @throws CouldNotConvertException
 	 * @throws CouldNotProcessException
 	 */
-	public Address persist(Address address, boolean isUpdate) 
+	public Address persist(Address address) 
 			throws InvalidCepException, 
 			NotFoundCepException, 
 			CouldNotProcessInvalidArgumentException, 
@@ -101,10 +101,6 @@ public class AddressBusiness {
 			
 			CepDetails cepDetails = cepRepository.findByCep(address.getCep());
 			AddressEntity entity = builder.buildEntity(address, cepDetails);
-			
-			if(isUpdate) {
-				entity.setId(repository.findByCepId(cepDetails));
-			}
 			
 			return builder.buildModel(repository.save(entity));
 		} catch (BuilderExcepiotn e) {

@@ -2,6 +2,8 @@ package exercise.builder;
 
 import static java.util.Objects.isNull;
 
+import java.util.Objects;
+
 import org.springframework.stereotype.Component;
 
 import exercise.entity.AddressEntity;
@@ -28,6 +30,7 @@ public class AddressModelBuilder {
 		CepDetails cepEntity = entity.getCep();
 		Address address = new Address();
 		
+		address.setId(entity.getId());
 		address.setStreet(cepEntity.getCity());
 		address.setState(cepEntity.getState());
 		address.setDistrict(cepEntity.getDistrict());
@@ -54,6 +57,9 @@ public class AddressModelBuilder {
 		}
 		
 		AddressEntity entity = new AddressEntity();
+		if(Objects.nonNull(address.getId())) {
+			entity.setId(address.getId());
+		}
 		entity.setComplement(address.getComplement());
 		entity.setCep(cepDetails);
 		entity.setNumber(address.getNumber());
